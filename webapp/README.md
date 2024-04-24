@@ -11,7 +11,7 @@ The frontend of the application is built using React, a JavaScript library for b
 ### Backend (Node.js):
 The backend of the application is built using Node.js, a JavaScript runtime environment. Node.js is used to create the API server that handles requests from the frontend and interacts with the database.
 
-### Code Structure
+# Code Structure
 The code for the WebApp project is organized as follows:
 
 ### Frontend (React):
