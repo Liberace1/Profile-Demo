@@ -5,8 +5,9 @@ The WebApp project is a full-stack web application built using React for the fro
 ## Architecture
 The architecture of the WebApp project consists of two main components:
 
-# Frontend (React): The frontend of the application is built using React, a JavaScript library for building user interfaces. React allows for the creation of dynamic and responsive UI components.
-Backend (Node.js): The backend of the application is built using Node.js, a JavaScript runtime environment. Node.js is used to create the API server that handles requests from the frontend and interacts with the database.
+# Frontend (React): 
+The frontend of the application is built using React, a JavaScript library for building user interfaces. React allows for the creation of dynamic and responsive UI components.
+# Backend (Node.js): The backend of the application is built using Node.js, a JavaScript runtime environment. Node.js is used to create the API server that handles requests from the frontend and interacts with the database.
 Code Structure
 The code for the WebApp project is organized as follows:
 
@@ -15,7 +16,8 @@ The frontend code is located in the src directory.
 Components such as App.js, CongratulationsModal.js, and others are responsible for rendering the user interface.
 React Router is used for client-side routing to navigate between different views of the application.
 Styling is done using CSS files such as App.css and index.css.
-Backend (Node.js):
+
+# Backend (Node.js):
 The backend code is located in the src/server directory.
 The main server file server.js sets up the Express.js server and defines the API routes.
 The package.json file lists the dependencies required for the backend.
