@@ -7,8 +7,10 @@ The architecture of the WebApp project consists of two main components:
 
 # Frontend (React): 
 The frontend of the application is built using React, a JavaScript library for building user interfaces. React allows for the creation of dynamic and responsive UI components.
-# Backend (Node.js): The backend of the application is built using Node.js, a JavaScript runtime environment. Node.js is used to create the API server that handles requests from the frontend and interacts with the database.
-Code Structure
+# Backend (Node.js):
+The backend of the application is built using Node.js, a JavaScript runtime environment. Node.js is used to create the API server that handles requests from the frontend and interacts with the database.
+
+# Code Structure
 The code for the WebApp project is organized as follows:
 
 # Frontend (React):
