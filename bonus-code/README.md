@@ -29,3 +29,6 @@ To run the script, navigate to the directory containing the script in your comma
 ```bash
 node <script_name>.js
 
+
+
+### Links to help with NVM Install -- https://tecadmin.net/how-to-install-nvm-on-ubuntu-20-04/
