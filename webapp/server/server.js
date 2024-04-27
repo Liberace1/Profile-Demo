@@ -2,8 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
-app.use(cors());
-
+app.use(cors({ origin: 'http://ec2-54-242-217-99.compute-1.amazonaws.com:3000' }));
 
 
 const profile = {
@@ -64,37 +63,6 @@ app.get('/api/profile', (req, res) => {
     res.json(profile);
 });
 
-// Serve profile data as a styled HTML page
-app.get('/profile', (req, res) => {
-    let skillsHtml = profile.skills.map(skill => 
-        `<li><strong>${skill.name}:</strong> ${skill.description}</li>`).join('');
-
-    let html = `
-    <html>
-    <head>
-        <title>${profile.name} - Profile</title>
-        <style>
-            body { font-family: Arial, sans-serif; line-height: 1.6; margin: 40px; }
-            h1 { color: #333366; }
-            h2 { color: #557799; }
-            ul { list-style-type: none; }
-            li { margin: 5px 0; }
-        </style>
-    </head>
-    <body>
-        <h1>${profile.name}</h1>
-        <h2>${profile.title}</h2>
-        <p>${profile.description}</p>
-        <h2>Experience: ${profile.experienceYears} years</h2>
-        <h2>Current Role: ${profile.currentRole}</h2>
-        <h2>Skills:</h2>
-        <ul>${skillsHtml}</ul>
-    </body>
-    </html>
-    `;
-
-    res.send(html);
-});
 
 
 app.get('/api/skills', (req, res) => {
@@ -114,4 +82,3 @@ app.get('/api/courses', (req, res) => {
 });
 
 app.listen(5000, () => console.log('Server running on http://localhost:5000'));
-

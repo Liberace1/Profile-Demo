@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import CongratulationsModal from './CongratulationsModal';
@@ -12,7 +13,7 @@ function App() {
 
   useEffect(() => {
     // Fetch profile with error handling
-    fetch('/api/profile')
+    fetch(`http://ec2-54-242-217-99.compute-1.amazonaws.com:5000/api/profile`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -23,7 +24,7 @@ function App() {
       .catch(error => console.error('Error fetching profile:', error));
 
     // Fetch skills with error handling
-    fetch('/api/skills')
+    fetch(`http://ec2-54-242-217-99.compute-1.amazonaws.com:5000/api/skills`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -34,10 +35,10 @@ function App() {
       .catch(error => console.error('Error fetching skills:', error));
 
     // Fetch courses with error handling
-    fetch('/api/courses')
+    fetch(`http://ec2-54-242-217-99.compute-1.amazonaws.com:5000/api/courses`)
       .then(response => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error(`Network response was not ok`);
         }
         return response.json();  // Changed from text() to json()
       })
@@ -99,16 +100,16 @@ function App() {
   return (
     <div className="App">
 
-	<header className="welcome"> 
-	  Welcome Quilter, Ola has prepared this for you
+        <header className="welcome">
+          Welcome Quilter, Ola has prepared this for you
       </header>
 
 
- 	<button onClick={() => setModalIsOpen(true)} style={{ padding: '10px 20px', cursor: 'pointer', margin: '10px' }}>
+        <button onClick={() => setModalIsOpen(true)} style={{ padding: '10px 20px', cursor: 'pointer', margin: '10px' }}>
         Would you like to know the setup?
-      	</button>
+        </button>
 
-     	 <CongratulationsModal isOpen={modalIsOpen} onClose={() => setModalIsOpen(false)} />
+         <CongratulationsModal isOpen={modalIsOpen} onClose={() => setModalIsOpen(false)} />
 
        <text>Rate this Demo!</text>  {/* Render star rating component */}
       {renderStarRating()}
@@ -149,4 +150,3 @@ function App() {
 }
 
 export default App;
-
