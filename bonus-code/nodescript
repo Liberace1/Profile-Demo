@@ -1,0 +1,51 @@
+const { exec } = require('child_process');
+
+// Function to execute a shell command
+function runCommand(command, callback) {
+    exec(command, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Error executing command: ${command}`);
+            console.error(stderr);
+            return;
+        }
+        console.log(stdout);
+        if (callback) callback();
+    });
+}
+
+// Define the directory for the server and React app
+const serverDirectory = '/webapp/server';
+const reactDirectory = '/webapp';
+const buildDirectory = '/webapp/build';
+
+// Define the command to start the server
+const startServerCommand = `cd ${serverDirectory} && nohup node server.js > server.log 2>&1 &`;
+
+// Define the commands to install dependencies, build, and serve the React app
+const installReactDependenciesCommand = `cd ${reactDirectory} && npm install`;
+const buildReactCommand = `cd ${reactDirectory} && npm run build`;
+const serveBuildCommand = `serve -s ${buildDirectory}`;
+
+// Function to start the server and then install dependencies, build, and serve the React app
+function startServerAndReactApp() {
+    console.log('Starting Node.js server...');
+    runCommand(startServerCommand, () => {
+        console.log('Node.js server started.');
+        console.log('Installing React app dependencies...');
+        runCommand(installReactDependenciesCommand, () => {
+            console.log('React app dependencies installed.');
+            console.log('Building React app...');
+            runCommand(buildReactCommand, () => {
+                console.log('React app build completed.');
+                console.log('Serving React app...');
+                runCommand(serveBuildCommand, () => {
+                    console.log('React app is being served.');
+                });
+            });
+        });
+    });
+}
+
+// Call the function to start the server and install, build, and serve the React app
+startServerAndReactApp();
+
