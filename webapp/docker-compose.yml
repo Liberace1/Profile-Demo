@@ -1,11 +1,13 @@
 version: '3'
 services:
   frontend:
-    build: ./src
+    build: ./frontend
+    image: webapp-frontend:latest
     ports:
       - "3000:3000"
   backend:
     build: ./server
+    image: webapp-backend:latest
     ports:
       - "5000:5000"
 
