@@ -15,7 +15,7 @@ function runCommand(command, callback) {
 
 // Define the directory for the server and React app
 const serverDirectory = '/webapp/server';
-const reactDirectory = '/webapp';
+const reactDirectory = '/webapp/frontend';
 const buildDirectory = '/webapp/build';
 
 // Define the command to start the server
