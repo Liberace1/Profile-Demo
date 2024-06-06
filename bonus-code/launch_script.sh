@@ -34,12 +34,23 @@ run_command "npm install -g serve -y"
 run_command "npm install url-parse -y"
 run_command "serve -s build &"
 
+# Navigate to the frontend directory
+frontend_directory="$project_directory/frontend"
+cd "$frontend_directory" || { echo "Error: Unable to navigate to server directory."; exit 1; }
+
+# Start the server in the background
+echo "Starting frontend..."
+run_command "npm install &"
+run_command "npm start &"
+run_command "cd ../../"
+
 # Navigate to the server directory
 server_directory="$project_directory/server"
 cd "$server_directory" || { echo "Error: Unable to navigate to server directory."; exit 1; }
 
 # Start the server in the background
 echo "Starting server..."
+run_command "npm install &"
 run_command "node server.js &"
 
 echo "All commands completed successfully."
