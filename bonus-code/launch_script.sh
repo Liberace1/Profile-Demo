@@ -22,13 +22,7 @@ project_directory="webapp"
 echo "Project directory: $project_directory"
 
 # Navigate to the project directory
-cd "$project_directory" || { echo "Error: Unable to navigate to project directory."; exit 1; }
-
-# Run npm run build in the background
-echo "Building project..."
-run_command "npm run build --clean"
-
-# Serve the built files using serve in the background
+cd "$project_directory" || { echo "Error: Unable to navigate to project directory."; exit 1; } && es using serve in the background
 echo "Serving build files..."
 run_command "npm install -g serve -y"
 run_command "npm install url-parse -y"
