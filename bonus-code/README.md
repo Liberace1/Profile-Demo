@@ -32,7 +32,7 @@ This script checks for the following dependencies and installs them if they are 
 
 1. Navigate to the `bonus-code` directory:
     ```sh
-    cd /path/to/bonus-code
+    cd /webapp/bonus-code
     ```
 
 2. Make the script executable:
@@ -60,14 +60,14 @@ This script will start the Node.js server, install dependencies for the React ap
 
 1. Navigate to the `bonus-code` directory:
     ```sh
-    cd /path/to/bonus-code
+    cd /webapp/bonus-code
     ```
 
 2. Ensure Node.js is installed and available in your PATH.
 
 3. Run the script:
     ```sh
-    node scriptstart.sh
+    ./scriptstart.sh
     ```
 
 ## Directory Structure
@@ -75,7 +75,9 @@ This script will start the Node.js server, install dependencies for the React ap
 The expected directory structure is as follows:
 
 
-
+#NOTE
+Script 1 (install_prereqs.sh) is optional if you have the applications instaled prior
+script 2 (scriptstart)  to start the services
 
 
 ### Links to help with NVM Install -- https://tecadmin.net/how-to-install-nvm-on-ubuntu-20-04/
