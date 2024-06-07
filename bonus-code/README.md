@@ -1,33 +1,80 @@
 # Node.js Server and React Application Manager
 
-This script automates the process of starting a Node.js server and managing the lifecycle of a React application in a development or production environment.
+This repository contains scripts to manage a Node.js server and a React application. The provided scripts will check for necessary dependencies, install them if they are not present, and start both the server and the React application.
 
-## Overview
+## Contents
 
-The script is designed to perform the following tasks in sequence:
-1. **Start the Node.js server**: Runs the `server.js` file located in a specified directory. The server will continue to run in the background, even after the command shell is closed.
-2. **Install React Dependencies**: Navigates to the React application directory and installs all required npm dependencies.
-3. **Build the React Application**: Executes the build process for the React application, preparing it for production deployment.
-4. **Serve the React Application**: Serves the built React application using a static server, making it accessible via a web browser.
+- `install_prereqs.sh`: A shell script to check and install required dependencies.
+- `scriptstart.sh`: A Node.js script to start the server, install dependencies for the React app, build the app, and serve the built app.
 
-The entire process is automated to ensure a smooth and efficient setup of both the backend and frontend components of your project.
+## Prerequisites
 
-## How to Use
+- Bash shell
+- Node.js installed on your system to run the Node.js script
 
-To use this script, ensure that you have Node.js and npm installed on your machine. Clone or download the script to your local system in a suitable directory.
+## Scripts
 
-### Configuration
+### 1. `install_prereqs.sh`
 
-Before running the script, update the following directory paths in the script to match your project structure:
-- `serverDirectory`: Path to the directory containing your Node.js `server.js` file.
-- `reactDirectory`: Path to your React application directory.
-- `buildDirectory`: Path where your React application's build output should be stored.
+This script checks for the following dependencies and installs them if they are not present:
+- Python
+- Node.js
+- Docker
+- curl
+- Java
 
-### Running the Script
+#### What It Does
 
-To run the script, navigate to the directory containing the script in your command terminal and execute the following command:
-```bash
-node <script_name>.js
+- **Checks for Dependencies**: Verifies if Python, Node.js, Docker, curl, and Java are installed.
+- **Installs Missing Dependencies**: If any of the dependencies are missing, the script installs them using the appropriate package manager (`apt-get` for Debian-based systems or `yum` for Red Hat-based systems).
+
+#### How to Run
+
+1. Navigate to the `bonus-code` directory:
+    ```sh
+    cd /path/to/bonus-code
+    ```
+
+2. Make the script executable:
+    ```sh
+    chmod +x install_prereqs.sh
+    ```
+
+3. Run the script:
+    ```sh
+    ./install_prereqs.sh
+    ```
+
+### 2. `scriptstart.sh`
+
+This script will start the Node.js server, install dependencies for the React application, build the React application, and serve the built application.
+
+#### What It Does
+
+- **Starts the Server**: Navigates to the server directory and starts the Node.js server using `nohup` to run it in the background.
+- **Installs React App Dependencies**: Navigates to the React app directory and installs the necessary npm packages.
+- **Builds the React App**: Builds the React application for production.
+- **Serves the React App**: Uses the `serve` package to serve the built React app.
+
+#### How to Run
+
+1. Navigate to the `bonus-code` directory:
+    ```sh
+    cd /path/to/bonus-code
+    ```
+
+2. Ensure Node.js is installed and available in your PATH.
+
+3. Run the script:
+    ```sh
+    node scriptstart.sh
+    ```
+
+## Directory Structure
+
+The expected directory structure is as follows:
+
+
 
 
 
