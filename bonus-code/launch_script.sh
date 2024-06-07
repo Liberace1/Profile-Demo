@@ -14,7 +14,7 @@ run_command() {
 
 # Print current working directory
 echo "Current working directory: $(pwd)"
-
+cd ..
 # Define project directory
 project_directory="webapp"
 
