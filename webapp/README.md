@@ -41,8 +41,8 @@ in the future, this application would be deployed to the cloud and kubernetes wi
 
 Clone the repository to your local machine.
 Install dependencies for both the frontend and backend using npm.
-Start the backend server by navigating to the /webapp/server directory and running npm start.
-Start the frontend by navigating to the /webapp/frontend directory and running npm start.
+Start the backend server by navigating to the /webapp/server directory and running 'npm install' and 'npm start'.
+Start the frontend by navigating to the /webapp/frontend directory and running 'npm install' and 'npm start'.
 Access the application in your web browser at localhost on the specified port.
 
 ### How to Run the webapp project (containers)
@@ -64,3 +64,6 @@ Access the application in your web browser at localhost on the specified port.
 
 ### Conclusion
 The WebApp project demonstrates how to build a full-stack web application using React for the frontend and Node.js for the backend. It provides a structured architecture for managing data and handling user interactions.
+
+## Note
+* If you need to run manually, see how to run webapp locally (non-container) and also check bonus-code folder for script automation
