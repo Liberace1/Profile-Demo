@@ -1,92 +1,58 @@
 #!/bin/bash
 
-# Function to check if a command is available
-command_exists() {
-  command -v "$1" &>/dev/null
+# Function to check if a command exists and install the package if it doesn't
+check_and_install() {
+    local cmd=$1
+    local package=$2
+    local installer=$3
+
+    if ! command -v $cmd &> /dev/null; then
+        echo "$cmd is not installed. Installing $package..."
+        eval $installer
+        if [ $? -eq 0 ]; then
+            echo "$package has been installed successfully."
+        else
+            echo "Failed to install $package. Please install it manually."
+        fi
+    else
+        echo "$cmd is already installed."
+    fi
 }
 
-# Check if Node.js is installed
-if ! command_exists node; then
-  # Install Node Version Manager (nvm)
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-  
-  # Load nvm to current shell session
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-  
-  # Install Node.js LTS version using nvm
-  nvm install --lts
-  
-  # Set the LTS version as default
-  nvm alias default 'lts/*'
-fi
-
-# Check if npm is installed
-if ! command_exists npm; then
-  # npm is installed automatically with Node.js, no need for separate installation
-  echo "npm is not installed."
-fi
-
-# Check if Docker is installed
-if ! command_exists docker; then
-  echo "Docker is not installed."
-  # Install Docker
-  if command_exists apt-get; then
-    # Install Docker on Debian-based systems using apt-get
-    sudo apt-get update
-    sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-  elif command_exists yum; then
-    # Install Docker on CentOS/RHEL-based systems using yum
-    sudo yum install -y yum-utils
-    sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-    sudo yum install -y docker-ce docker-ce-cli containerd.io
-  else
-    echo "No compatible package manager found. Script supports apt-get and yum."
+# Detect package manager
+if command -v apt-get &> /dev/null; then
+    PACKAGE_MANAGER="apt-get"
+    UPDATE_CMD="sudo apt-get update"
+    INSTALL_CMDS=(
+        "python3:python3:sudo apt-get install -y python3"
+        "node:nodejs:curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash - && sudo apt-get install -y nodejs"
+        "docker:docker:curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh && sudo usermod -aG docker \$USER"
+        "curl:curl:sudo apt-get install -y curl"
+        "java:openjdk-11-jdk:sudo apt-get install -y openjdk-11-jdk"
+    )
+elif command -v yum &> /dev/null; then
+    PACKAGE_MANAGER="yum"
+    UPDATE_CMD="sudo yum update -y"
+    INSTALL_CMDS=(
+        "python3:python3:sudo yum install -y python3"
+        "node:nodejs:curl -fsSL https://rpm.nodesource.com/setup_14.x | sudo bash - && sudo yum install -y nodejs"
+        "docker:docker:curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh && sudo usermod -aG docker \$USER"
+        "curl:curl:sudo yum install -y curl"
+        "java:java-11-openjdk-devel:sudo yum install -y java-11-openjdk-devel"
+    )
+else
+    echo "Unsupported package manager. Please install dependencies manually."
     exit 1
-  fi
 fi
 
-# Check if Python is installed
-if ! command_exists python3; then
-  echo "Python is not installed."
-  # Install Python
-  if command_exists apt-get; then
-    sudo apt-get update
-    sudo apt-get install -y python3
-  elif command_exists yum; then
-    sudo yum install -y python3
-  else
-    echo "No compatible package manager found. Script supports apt-get and yum."
-    exit 1
-  fi
-fi
+# Update package manager
+echo "Updating package manager..."
+eval $UPDATE_CMD
 
-# Check if Java is installed
-if ! command_exists java; then
-  echo "Java is not installed."
-  # Install Java
-  if command_exists apt-get; then
-    sudo apt-get update
-    sudo apt-get install -y default-jdk
-  elif command_exists yum; then
-    sudo yum install -y java-1.8.0-openjdk
-  else
-    echo "No compatible package manager found. Script supports apt-get and yum."
-    exit 1
-  fi
-fi
+# Check and install each dependency
+for entry in "${INSTALL_CMDS[@]}"; do
+    IFS=":" read -r cmd package installer <<< "$entry"
+    check_and_install $cmd $package "$installer"
+done
 
-# Verify installations
-echo "Node.js version:"
-node -v
-echo "npm version:"
-npm -v
-echo "Docker version:"
-docker --version
-echo "Python version:"
-python3 --version
-echo "Java version:"
-java -version
-
-echo "All prerequisites have been installed successfully."
+echo "All dependencies are checked and installed if necessary."
