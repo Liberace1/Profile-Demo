@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const app = express();
-const SERVER_URL = 'http://localhost:3000';
+const SERVER_URL = 'http://98.81.203.17:3000';
 
 app.use(cors({ origin: SERVER_URL }));
 
