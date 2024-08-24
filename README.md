@@ -23,7 +23,7 @@ Clone the repository to your local machine using the following command:
 
 ## Installing Dependencies
 
-From the root of your project directory (`webapp/`), install the required npm packages:
+From the root of your project directory (`webapp/server`), install the required npm packages:
 
 ### npm install
 
