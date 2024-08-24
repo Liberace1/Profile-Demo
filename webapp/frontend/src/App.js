@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import CongratulationsModal from './CongratulationsModal';
 
-const BASE_URL = '98.81.203.17:5000/api';
+const BASE_URL = 'http://98.81.203.17:5000/api';
 
 function App() {
   const [skills, setSkills] = useState([]);
