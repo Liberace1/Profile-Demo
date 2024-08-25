@@ -35,8 +35,9 @@ From the root of your project directory (`webapp/server`), install the required 
 
 
 # Running the Frontend
-### Navigate to the fronten/ directory and start the frontend application:
+### Navigate to the frontend/ directory and start the frontend application:
 ### cd /src
+### npm install
 ### npm start
 ### This command will run the React application in development mode. Open http://localhost:3000 to view it in the browser.
 
